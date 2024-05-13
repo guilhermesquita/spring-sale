@@ -29,8 +29,9 @@ public class DuckController {
         return null;
     }
 
-   /* @GetMapping("/{id}")
-    public ResponseEntity<Duck> findById(@PathVariable("id") String id){
-        return null;
-    }*/
+   @GetMapping("/{id}")
+    public ResponseEntity<Duck> findById(@PathVariable("id") Long id){
+        var duck = duckBusiness.getDuckById(id);
+        return duck.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }

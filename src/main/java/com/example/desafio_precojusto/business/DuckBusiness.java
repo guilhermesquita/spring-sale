@@ -31,4 +31,8 @@ public class DuckBusiness {
         duckRepository.save(duck);
         return "Criado com sucesso!";
     }
+
+    public Optional<Duck> getDuckById(Long id){
+        return duckRepository.findById(id);
+    };
 }
