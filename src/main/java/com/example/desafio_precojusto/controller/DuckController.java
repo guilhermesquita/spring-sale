@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/ducks")
@@ -33,13 +34,13 @@ public class DuckController {
     }
 
   @GetMapping("/{id}")
-    public ResponseEntity<Duck> findById(@PathVariable("id") Long id){
+    public ResponseEntity<Duck> findById(@PathVariable("id") UUID id){
         var duck = duckBusiness.getDuckById(id);
         return duck.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public String updatedDuckById(@PathVariable("id") Long id,
+    public String updatedDuckById(@PathVariable("id") UUID id,
                                   @RequestBody UpdateUserDTO updateUserDTO)
     {
         duckBusiness.updateById(id, updateUserDTO);
@@ -47,7 +48,7 @@ public class DuckController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable("id") Long id){
+    public String deleteById(@PathVariable("id") UUID id){
         duckBusiness.deleteById(id);
         return "Removido com Sucesso!";
     }

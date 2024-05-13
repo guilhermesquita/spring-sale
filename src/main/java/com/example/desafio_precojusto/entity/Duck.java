@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.util.Optional;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tbl_duck")
@@ -18,10 +19,10 @@ import java.util.Optional;
 @Setter
 public class Duck {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_duck", nullable = false, unique = true)
     @Setter(AccessLevel.NONE)
-    private Long idDuck;
+    private UUID idDuck;
 
     @Column(name = "name_duck", nullable = false, unique = true)
     private String nameDuck;
@@ -42,7 +43,7 @@ public class Duck {
     @UpdateTimestamp
     private Instant updated_at;
 
-    public Long getIdDuck() {
+    public UUID getIdDuck() {
         return idDuck;
     }
 
@@ -94,7 +95,8 @@ public class Duck {
         this.updated_at = updated_at;
     }
 
-    public Duck(String nameDuck, String statusDuck, Integer valueDuck, Duck parentDuck, Instant created_at, Instant updated_at) {
+    public Duck(UUID idDuck, String nameDuck, String statusDuck, Integer valueDuck, Duck parentDuck, Instant created_at, Instant updated_at) {
+        this.idDuck = idDuck;
         this.nameDuck = nameDuck;
         this.statusDuck = statusDuck;
         this.valueDuck = valueDuck;
