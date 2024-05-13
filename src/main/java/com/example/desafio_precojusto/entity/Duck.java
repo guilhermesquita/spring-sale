@@ -42,6 +42,58 @@ public class Duck {
     @UpdateTimestamp
     private Instant updated_at;
 
+    public Long getIdDuck() {
+        return idDuck;
+    }
+
+    public String getNameDuck() {
+        return nameDuck;
+    }
+
+    public void setNameDuck(String nameDuck) {
+        this.nameDuck = nameDuck;
+    }
+
+    public String getStatusDuck() {
+        return statusDuck;
+    }
+
+    public void setStatusDuck(String statusDuck) {
+        this.statusDuck = statusDuck;
+    }
+
+    public Integer getValueDuck() {
+        return valueDuck;
+    }
+
+    public void setValueDuck(Integer valueDuck) {
+        this.valueDuck = valueDuck;
+    }
+
+    public Duck getParentDuck() {
+        return parentDuck;
+    }
+
+    public void setParentDuck(Duck parentDuck) {
+        this.parentDuck = parentDuck;
+    }
+
+    public Instant getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Instant created_at) {
+        this.created_at = created_at;
+    }
+
+    public Instant getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(Instant updated_at) {
+        this.updated_at = updated_at;
+    }
+
     public Duck(String nameDuck, String statusDuck, Integer valueDuck, Duck parentDuck, Instant created_at, Instant updated_at) {
         this.nameDuck = nameDuck;
         this.statusDuck = statusDuck;

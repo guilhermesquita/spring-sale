@@ -1,6 +1,7 @@
 package com.example.desafio_precojusto.controller;
 
 import com.example.desafio_precojusto.DTOs.CreateDuckDTO;
+import com.example.desafio_precojusto.DTOs.UpdateUserDTO;
 import com.example.desafio_precojusto.business.DuckBusiness;
 import com.example.desafio_precojusto.entity.Duck;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +32,19 @@ public class DuckController {
         return ResponseEntity.ok(ducks);
     }
 
-  /* @GetMapping("/{id}")
+  @GetMapping("/{id}")
     public ResponseEntity<Duck> findById(@PathVariable("id") Long id){
         var duck = duckBusiness.getDuckById(id);
         return duck.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }*/
+    }
+
+    @PutMapping("/{id}")
+    public String updatedDuckById(@PathVariable("id") Long id,
+                                  @RequestBody UpdateUserDTO updateUserDTO)
+    {
+        duckBusiness.updateById(id, updateUserDTO);
+        return "atualizado com sucesso!";
+    }
 
     @DeleteMapping("/{id}")
     public String deleteById(@PathVariable("id") Long id){

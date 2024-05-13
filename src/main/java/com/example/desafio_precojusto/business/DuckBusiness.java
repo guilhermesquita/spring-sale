@@ -1,5 +1,6 @@
 package com.example.desafio_precojusto.business;
 import com.example.desafio_precojusto.DTOs.CreateDuckDTO;
+import com.example.desafio_precojusto.DTOs.UpdateUserDTO;
 import com.example.desafio_precojusto.entity.Duck;
 import com.example.desafio_precojusto.repository.DuckRepository;
 import org.apache.catalina.User;
@@ -44,6 +45,25 @@ public class DuckBusiness {
 
     public List<Duck> listUser(){
         return duckRepository.findAll();
+    }
+
+    public void updateById(Long id, UpdateUserDTO updateUserDTO){
+        var duckExists = duckRepository.findById(id);
+        if(duckExists.isPresent()){
+            var duck = duckExists.get();
+
+            if(updateUserDTO.name_duck() != null){
+                duck.setNameDuck(updateUserDTO.name_duck());
+            }
+            if(updateUserDTO.parent_duck() != null){
+                Duck parentDuck = null;
+
+                Optional<Duck> duckById = duckRepository.findById(updateUserDTO.parent_duck());
+                parentDuck = duckById.orElse(null);
+                duck.setParentDuck(parentDuck);
+            }
+            duckRepository.save(duck);
+        }
     }
 
     public void deleteById(Long id){
