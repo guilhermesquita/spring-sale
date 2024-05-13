@@ -19,19 +19,27 @@ public class DuckController {
     }
 
     @PostMapping()
-    public ResponseEntity<Duck> createDuck(@RequestBody CreateDuckDTO createDuckDTO){
-        duckBusiness.CreateDuck(createDuckDTO);
-        return ResponseEntity.created(URI.create("v1/ducks/")).build();
+    public String createDuck(@RequestBody CreateDuckDTO createDuckDTO){
+        duckBusiness.createDuck(createDuckDTO);
+        ResponseEntity.created(URI.create("v1/ducks/")).build();
+        return "criado!";
     }
 
    @GetMapping()
     public ResponseEntity<List<Duck>> findAll(){
-        return null;
+        var ducks = duckBusiness.listUser();
+        return ResponseEntity.ok(ducks);
     }
 
-   @GetMapping("/{id}")
+  /* @GetMapping("/{id}")
     public ResponseEntity<Duck> findById(@PathVariable("id") Long id){
         var duck = duckBusiness.getDuckById(id);
         return duck.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }*/
+
+    @DeleteMapping("/{id}")
+    public String deleteById(@PathVariable("id") Long id){
+        duckBusiness.deleteById(id);
+        return "Removido com Sucesso!";
     }
 }
