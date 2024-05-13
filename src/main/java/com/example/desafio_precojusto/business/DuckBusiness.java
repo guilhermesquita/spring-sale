@@ -1,9 +1,8 @@
 package com.example.desafio_precojusto.business;
 import com.example.desafio_precojusto.DTOs.CreateDuckDTO;
-import com.example.desafio_precojusto.DTOs.UpdateUserDTO;
+import com.example.desafio_precojusto.DTOs.UpdateDuckDTO;
 import com.example.desafio_precojusto.entity.Duck;
 import com.example.desafio_precojusto.repository.DuckRepository;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -57,7 +56,7 @@ public class DuckBusiness {
         return duckRepository.findAll();
     }
 
-    public void updateById(UUID id, UpdateUserDTO updateUserDTO){
+    public void updateById(UUID id, UpdateDuckDTO updateUserDTO){
         var duckExists = duckRepository.findById(id);
         if(duckExists.isPresent()){
             var duck = duckExists.get();

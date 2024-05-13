@@ -1,7 +1,7 @@
 package com.example.desafio_precojusto.controller;
 
 import com.example.desafio_precojusto.DTOs.CreateDuckDTO;
-import com.example.desafio_precojusto.DTOs.UpdateUserDTO;
+import com.example.desafio_precojusto.DTOs.UpdateDuckDTO;
 import com.example.desafio_precojusto.business.DuckBusiness;
 import com.example.desafio_precojusto.entity.Duck;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public class DuckController {
 
     @PutMapping("/{id}")
     public String updatedDuckById(@PathVariable("id") UUID id,
-                                  @RequestBody UpdateUserDTO updateUserDTO)
+                                  @RequestBody UpdateDuckDTO updateUserDTO)
     {
         duckBusiness.updateById(id, updateUserDTO);
         return "atualizado com sucesso!";
