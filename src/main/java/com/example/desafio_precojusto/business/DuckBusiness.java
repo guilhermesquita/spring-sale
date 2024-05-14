@@ -46,7 +46,7 @@ public class DuckBusiness {
     public Optional<Duck> getDuckById(UUID id){
         var duckId = duckRepository.findById(id);
         if (duckId.isPresent()) {
-            return duckRepository.findById(id);
+            return duckId;
         }else {
             throw new IllegalArgumentException("Pato não encontrado.");
         }

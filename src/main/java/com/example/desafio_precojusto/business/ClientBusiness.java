@@ -20,11 +20,24 @@ public class ClientBusiness {
     }
 
     public String createClient(CreateClientDTO createClientDTO){
-        var client = new Client(
+
+        if(createClientDTO.type_client() != "com desconto" & createClientDTO.type_client() != "sem desconto"){
+            throw new IllegalArgumentException("o type_client aceita apenas os valores: 'com desconto' ou 'sem desconto'.");
+        }
+
+        Client client = new Client(
           UUID.randomUUID(), createClientDTO.name_client(), createClientDTO.type_client(),Instant.now(),
                 null
         );
         clientRepository.save(client);
         return "Criado com sucesso!";
+    }
+    public Optional<Client> getClientById(UUID id){
+        var clientById = clientRepository.findById(id);
+        if(clientById.isPresent()){
+            return clientById;
+        }else {
+            throw new IllegalArgumentException("Cliente não encontrado.");
+        }
     }
 }
