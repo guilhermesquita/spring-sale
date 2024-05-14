@@ -29,7 +29,7 @@ public class DuckController {
 
    @GetMapping()
     public ResponseEntity<List<Duck>> findAll(){
-        var ducks = duckBusiness.listUser();
+        var ducks = duckBusiness.listDuck();
         return ResponseEntity.ok(ducks);
     }
 

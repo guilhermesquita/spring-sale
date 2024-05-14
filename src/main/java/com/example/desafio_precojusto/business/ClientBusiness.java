@@ -6,6 +6,7 @@ import com.example.desafio_precojusto.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -32,6 +33,10 @@ public class ClientBusiness {
         }else {
             throw new IllegalArgumentException("Cliente não encontrado.");
         }
+    }
+
+    public List<Client> listClient(){
+        return clientRepository.findAll();
     }
     public void deleteClient(UUID id){
         var clientExists = clientRepository.existsById(id);

@@ -53,7 +53,7 @@ public class DuckBusiness {
         }
     };
 
-    public List<Duck> listUser(){
+    public List<Duck> listDuck(){
         return duckRepository.findAll();
     }
 

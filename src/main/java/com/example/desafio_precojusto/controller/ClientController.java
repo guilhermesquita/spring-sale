@@ -3,10 +3,12 @@ package com.example.desafio_precojusto.controller;
 import com.example.desafio_precojusto.DTOs.CreateClientDTO;
 import com.example.desafio_precojusto.business.ClientBusiness;
 import com.example.desafio_precojusto.entity.Client;
+import com.example.desafio_precojusto.entity.Duck;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,6 +25,12 @@ public class ClientController {
         clientBusiness.createClient(createClientDTO);
         ResponseEntity.created(URI.create("v1/clients/")).build();
         return "Cliente Criado!";
+    }
+
+    @GetMapping()
+    public  ResponseEntity<List<Client>> findAll(){
+        var client = clientBusiness.listClient();
+        return ResponseEntity.ok(client);
     }
 
     @GetMapping("/{id}")
