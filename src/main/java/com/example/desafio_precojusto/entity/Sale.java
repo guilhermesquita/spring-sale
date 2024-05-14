@@ -68,4 +68,12 @@ public class Sale {
         this.valueSale = valueSale;
         this.created_at = created_at;
     }
+
+    public Integer getValueSale() {
+        return valueSale;
+    }
+
+    public void setValueSale(Integer valueSale) {
+        this.valueSale = valueSale;
+    }
 }
