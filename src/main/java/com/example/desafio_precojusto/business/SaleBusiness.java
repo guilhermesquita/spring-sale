@@ -10,6 +10,7 @@ import com.example.desafio_precojusto.repository.SaleRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -42,7 +43,6 @@ public class SaleBusiness {
         if (clientId != null) {
             Optional<Client> clientById = clientRepository.findById(clientId);
             client = clientById.orElse(null);
-            //duck.setValueDuck(50);
             if (client == null) {
                 throw new IllegalArgumentException("Cliente não encontrado.");
             }
@@ -77,4 +77,8 @@ public class SaleBusiness {
         return saleSaved.getIdSale();
     }
 }
+
+    public List<Sale> getAllSales(){ return saleRepository.findAll(); }
+
+
 }
