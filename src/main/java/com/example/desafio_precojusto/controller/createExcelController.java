@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/v1/generate")
+@RequestMapping("/v1/generate/excel")
 public class createExcelController {
     @Autowired
     private CreateExcelBusiness createExcelBusiness;
@@ -22,7 +22,7 @@ public class createExcelController {
         response.setContentType("application/octet-stream");
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment;filename=courses.xls";
+        String headerValue = "attachment;filename=gerencimento_de_patos.xls";
 
         response.setHeader(headerKey, headerValue);
 

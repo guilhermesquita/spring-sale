@@ -33,7 +33,7 @@ public class CreateExcelBusiness {
         List<Duck> ducks = duckRepository.findAll();
 
         HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet("Courses Info");
+        HSSFSheet sheet = workbook.createSheet("gerenciamento_de_patos");
 
         HSSFRow mergedRow = sheet.createRow(1);
         mergedRow.createCell(1).setCellValue("Gerenciamento de patos");
