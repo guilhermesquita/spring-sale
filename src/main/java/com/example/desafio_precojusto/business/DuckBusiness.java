@@ -19,7 +19,7 @@ public class DuckBusiness {
         this.duckRepository = duckRepository;
     }
 
-    public String createDuck(CreateDuckDTO createDuckDTO){
+    public UUID createDuck(CreateDuckDTO createDuckDTO){
         UUID parentId = createDuckDTO.parent_duck();
         Duck parentDuck = null;
         if (parentId != null) {
@@ -40,8 +40,8 @@ public class DuckBusiness {
                 Instant.now(),
                 null);
 
-        duckRepository.save(duck);
-        return "Criado com sucesso!";
+        Duck duckSaved = duckRepository.save(duck);
+        return duckSaved.getIdDuck();
     }
 
     public Optional<Duck> getDuckById(UUID id){
@@ -57,7 +57,7 @@ public class DuckBusiness {
         return duckRepository.findAll();
     }
 
-    public void updateById(UUID id, UpdateDuckDTO updateUserDTO){
+    public UUID updateById(UUID id, UpdateDuckDTO updateUserDTO){
         var duckExists = duckRepository.findById(id);
         if(duckExists.isPresent()){
             var duck = duckExists.get();
@@ -72,7 +72,8 @@ public class DuckBusiness {
                 parentDuck = duckById.orElse(null);
                 duck.setParentDuck(parentDuck);
             }
-            duckRepository.save(duck);
+            Duck savedDuck = duckRepository.save(duck);
+            return savedDuck.getIdDuck();
         }else {
             throw new IllegalArgumentException("Pato não encontrado.");
         }

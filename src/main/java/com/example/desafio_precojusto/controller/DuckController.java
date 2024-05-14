@@ -22,9 +22,9 @@ public class DuckController {
 
     @PostMapping()
     public String createDuck(@RequestBody CreateDuckDTO createDuckDTO){
-        duckBusiness.createDuck(createDuckDTO);
+        UUID duck = duckBusiness.createDuck(createDuckDTO);
         ResponseEntity.created(URI.create("v1/ducks/")).build();
-        return "criado!";
+        return "pato adicionado! id: " + duck;
     }
 
    @GetMapping()
@@ -43,8 +43,8 @@ public class DuckController {
     public String updatedDuckById(@PathVariable("id") UUID id,
                                   @RequestBody UpdateDuckDTO updateUserDTO)
     {
-        duckBusiness.updateById(id, updateUserDTO);
-        return "atualizado com sucesso!";
+        UUID duck = duckBusiness.updateById(id, updateUserDTO);
+        return "atualizado com sucesso! id: " + duck;
     }
 
     @DeleteMapping("/{id}")
