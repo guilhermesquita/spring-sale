@@ -25,6 +25,7 @@ public class DuckBusiness {
         if (parentId != null) {
             Optional<Duck> duckById = duckRepository.findById(parentId);
             parentDuck = duckById.orElse(null);
+            parentDuck.setValueDuck(50);
             if (parentDuck == null) {
                 throw new IllegalArgumentException("Pato pai não encontrado.");
             }
