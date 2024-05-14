@@ -35,6 +35,7 @@ public class SaleBusiness {
 
         if (duckId != null) {
             Optional<Duck> duckById = duckRepository.findById(duckId);
+            System.out.println(duckById);
             duck = duckById.orElse(null);
             if (duck == null) {
                 throw new IllegalArgumentException("Pato não encontrado.");

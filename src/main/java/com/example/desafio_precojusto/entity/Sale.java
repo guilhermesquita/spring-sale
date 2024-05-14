@@ -1,11 +1,9 @@
 package com.example.desafio_precojusto.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -17,9 +15,7 @@ import java.util.UUID;
 @Setter
 public class Sale {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_sale", nullable = false, unique = true)
-    @Setter(AccessLevel.NONE)
     private UUID idSale;
 
     @ManyToOne
@@ -33,7 +29,6 @@ public class Sale {
     @Column(name = "value_sale", nullable = false, unique = false)
     private Integer valueSale;
 
-    @CreationTimestamp
     private Instant created_at;
 
     public UUID getIdSale() {

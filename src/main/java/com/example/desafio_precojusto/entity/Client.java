@@ -1,12 +1,9 @@
 package com.example.desafio_precojusto.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -18,21 +15,17 @@ import java.util.UUID;
 @Setter
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_client", nullable = false, unique = true)
-    @Setter(AccessLevel.NONE)
     private UUID idClient;
 
     @Column(name = "name_client", nullable = true, unique = true)
     private String nameClient;
 
     @Column(name = "descont", nullable = false, unique = false)
-    private Boolean descont;
+    private boolean descont;
 
-    @CreationTimestamp
     private Instant created_at;
 
-    @UpdateTimestamp
     private Instant updated_at;
 
     public UUID getIdClient() {
@@ -71,7 +64,7 @@ public class Client {
         this.updated_at = updated_at;
     }
 
-    public Client(UUID idClient, String nameClient, Boolean descont, Instant created_at, Instant updated_at) {
+    public Client(UUID idClient, String nameClient, boolean descont, Instant created_at, Instant updated_at) {
         this.idClient = idClient;
         this.nameClient = nameClient;
         this.descont = descont;
