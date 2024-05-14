@@ -27,7 +27,7 @@ public class Client {
     private String nameClient;
 
     @Column(name = "type_client", nullable = false, unique = false)
-    private String typeClient;
+    private Boolean descont;
 
     @CreationTimestamp
     private Instant created_at;
@@ -47,12 +47,12 @@ public class Client {
         this.nameClient = nameClient;
     }
 
-    public String getTypeClient() {
-        return typeClient;
+    public Boolean getDescont() {
+        return descont;
     }
 
-    public void setTypeClient(String typeClient) {
-        this.typeClient = typeClient;
+    public void setDescont(Boolean descont) {
+        this.descont = descont;
     }
 
     public Instant getCreated_at() {
@@ -71,10 +71,10 @@ public class Client {
         this.updated_at = updated_at;
     }
 
-    public Client(UUID idClient, String nameClient, String typeClient, Instant created_at, Instant updated_at) {
+    public Client(UUID idClient, String nameClient, Boolean descont, Instant created_at, Instant updated_at) {
         this.idClient = idClient;
         this.nameClient = nameClient;
-        this.typeClient = typeClient;
+        this.descont = descont;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }

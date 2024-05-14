@@ -1,9 +1,7 @@
 package com.example.desafio_precojusto.business;
 
 import com.example.desafio_precojusto.DTOs.CreateClientDTO;
-import com.example.desafio_precojusto.DTOs.CreateDuckDTO;
 import com.example.desafio_precojusto.entity.Client;
-import com.example.desafio_precojusto.entity.Duck;
 import com.example.desafio_precojusto.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +18,8 @@ public class ClientBusiness {
     }
 
     public String createClient(CreateClientDTO createClientDTO){
-
-        if(createClientDTO.type_client() != "com desconto" & createClientDTO.type_client() != "sem desconto"){
-            throw new IllegalArgumentException("o type_client aceita apenas os valores: 'com desconto' ou 'sem desconto'.");
-        }
-
         Client client = new Client(
-          UUID.randomUUID(), createClientDTO.name_client(), createClientDTO.type_client(),Instant.now(),
+          UUID.randomUUID(), createClientDTO.name_client(), createClientDTO.descont(),Instant.now(),
                 null
         );
         clientRepository.save(client);
@@ -36,6 +29,14 @@ public class ClientBusiness {
         var clientById = clientRepository.findById(id);
         if(clientById.isPresent()){
             return clientById;
+        }else {
+            throw new IllegalArgumentException("Cliente não encontrado.");
+        }
+    }
+    public void deleteClient(UUID id){
+        var clientExists = clientRepository.existsById(id);
+        if(clientExists){
+            clientRepository.deleteById(id);
         }else {
             throw new IllegalArgumentException("Cliente não encontrado.");
         }

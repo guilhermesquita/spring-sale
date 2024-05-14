@@ -26,8 +26,13 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Client> findById(@PathVariable UUID id){
+    public ResponseEntity<Client> findById(@PathVariable("id") UUID id){
         var client = clientBusiness.getClientById(id);
         return client.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+    @DeleteMapping("{id}")
+    public String deleteClient(@PathVariable("id") UUID id){
+        clientBusiness.deleteClient(id);
+        return "Removido com sucesso";
     }
 }
