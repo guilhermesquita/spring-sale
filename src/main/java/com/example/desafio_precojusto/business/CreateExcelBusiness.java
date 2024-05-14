@@ -14,7 +14,6 @@ import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class CreateExcelBusiness {
@@ -46,7 +45,7 @@ public class CreateExcelBusiness {
         font.setFontHeightInPoints((short) 26);
         mergedCellStyle.setFont(font);
         mergedRow.getCell(1).setCellStyle(mergedCellStyle);
-        sheet.addMergedRegion(new org.apache.poi.ss.util.CellRangeAddress(1, 1, 1, 7));
+        sheet.addMergedRegion(new org.apache.poi.ss.util.CellRangeAddress(1, 1, 1, 5));
 
         HSSFRow headerRow = sheet.createRow(2);
         headerRow.createCell(1).setCellValue("Nome");

@@ -2,9 +2,7 @@ package com.example.desafio_precojusto.business;
 
 import com.example.desafio_precojusto.DTOs.CreateClientDTO;
 import com.example.desafio_precojusto.DTOs.UpdateClientDTO;
-import com.example.desafio_precojusto.DTOs.UpdateDuckDTO;
 import com.example.desafio_precojusto.entity.Client;
-import com.example.desafio_precojusto.entity.Duck;
 import com.example.desafio_precojusto.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
