@@ -5,8 +5,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -18,7 +16,6 @@ import java.util.UUID;
 @Setter
 public class Duck {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_duck", nullable = false, unique = true)
     @Setter(AccessLevel.NONE)
     private UUID idDuck;
@@ -35,11 +32,7 @@ public class Duck {
     @ManyToOne
     @JoinColumn(name = "parent_duck", nullable = true, referencedColumnName = "id_duck")
     private Duck parentDuck;
-
-    @CreationTimestamp
     private Instant created_at;
-
-    @UpdateTimestamp
     private Instant updated_at;
 
     public UUID getIdDuck() {
