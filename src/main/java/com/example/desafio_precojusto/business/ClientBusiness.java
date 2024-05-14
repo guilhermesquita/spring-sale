@@ -1,7 +1,10 @@
 package com.example.desafio_precojusto.business;
 
 import com.example.desafio_precojusto.DTOs.CreateClientDTO;
+import com.example.desafio_precojusto.DTOs.UpdateClientDTO;
+import com.example.desafio_precojusto.DTOs.UpdateDuckDTO;
 import com.example.desafio_precojusto.entity.Client;
+import com.example.desafio_precojusto.entity.Duck;
 import com.example.desafio_precojusto.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +45,24 @@ public class ClientBusiness {
         var clientExists = clientRepository.existsById(id);
         if(clientExists){
             clientRepository.deleteById(id);
+        }else {
+            throw new IllegalArgumentException("Cliente não encontrado.");
+        }
+    }
+
+    public UUID updateById(UUID id, UpdateClientDTO updateClientDTO){
+        var clientExists = clientRepository.findById(id);
+        if(clientExists.isPresent()){
+            var client = clientExists.get();
+
+            if(updateClientDTO.name_client() != null){
+                client.setNameClient(updateClientDTO.name_client());
+            }
+            if(updateClientDTO.descont() != null){
+                client.setDescont(updateClientDTO.descont());
+            }
+            clientRepository.save(client);
+            return client.getIdClient();
         }else {
             throw new IllegalArgumentException("Cliente não encontrado.");
         }
