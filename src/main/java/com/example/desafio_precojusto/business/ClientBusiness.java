@@ -21,13 +21,13 @@ public class ClientBusiness {
         this.clientRepository = clientRepository;
     }
 
-    public String createClient(CreateClientDTO createClientDTO){
+    public UUID createClient(CreateClientDTO createClientDTO){
         Client client = new Client(
           UUID.randomUUID(), createClientDTO.name_client(), createClientDTO.descont(),Instant.now(),
                 null
         );
-        clientRepository.save(client);
-        return "Criado com sucesso!";
+        Client clientSaved = clientRepository.save(client);
+        return clientSaved.getIdClient();
     }
     public Optional<Client> getClientById(UUID id){
         var clientById = clientRepository.findById(id);
@@ -61,8 +61,8 @@ public class ClientBusiness {
             if(updateClientDTO.descont() != null){
                 client.setDescont(updateClientDTO.descont());
             }
-            clientRepository.save(client);
-            return client.getIdClient();
+            Client savedClient = clientRepository.save(client);
+            return savedClient.getIdClient();
         }else {
             throw new IllegalArgumentException("Cliente não encontrado.");
         }

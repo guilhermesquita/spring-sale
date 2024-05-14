@@ -4,7 +4,6 @@ import com.example.desafio_precojusto.DTOs.CreateClientDTO;
 import com.example.desafio_precojusto.DTOs.UpdateClientDTO;
 import com.example.desafio_precojusto.business.ClientBusiness;
 import com.example.desafio_precojusto.entity.Client;
-import com.example.desafio_precojusto.entity.Duck;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +22,9 @@ public class ClientController {
 
     @PostMapping()
     public String createClient(@RequestBody CreateClientDTO createClientDTO){
-        clientBusiness.createClient(createClientDTO);
+        var client = clientBusiness.createClient(createClientDTO);
         ResponseEntity.created(URI.create("v1/clients/")).build();
-        return "Cliente Criado!";
+        return "Cliente Criado! id: " + client.toString();
     }
 
     @GetMapping()
@@ -42,7 +41,7 @@ public class ClientController {
     @PutMapping("{id}")
     public String editClient(@PathVariable("id") UUID id, @RequestBody UpdateClientDTO updateClientDTO){
         var business = clientBusiness.updateById(id, updateClientDTO);
-        return "Atualizado com sucesso! id: " + business;
+        return "Atualizado com sucesso! id: " + business.toString();
     }
 
     @DeleteMapping("{id}")
