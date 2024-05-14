@@ -26,7 +26,7 @@ public class Client {
     @Column(name = "name_client", nullable = true, unique = true)
     private String nameClient;
 
-    @Column(name = "type_client", nullable = false, unique = false)
+    @Column(name = "descont", nullable = false, unique = false)
     private Boolean descont;
 
     @CreationTimestamp
